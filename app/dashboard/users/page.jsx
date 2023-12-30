@@ -4,35 +4,31 @@ import Link from 'next/link'
 import noavatar from '@/public/noavatar.png'
 import Image from "next/image"
 import Pagination from '@/app/ui/dashboard/pagination/pagination'
-import { fetchUser } from '@/app/lib/data'
-import { deleteUser } from '@/app/lib/action'
+import { fetchBlog,fetchUser } from '@/app/lib/data'
+import { deleteBlog } from '@/app/lib/action'
 
 const UsersPage = async({searchParams}) => {
-  const  q = searchParams.q||"";
-  const users = await fetchUser(q);
+  const  q = searchParams?.q||"";
+  const page = searchParams?.page||1;
+  const {users,count} = await fetchUser(q,page);
   
 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder={"search for user..."}/>
-        <Link href="/dashboard/users/add">
-          <button className={styles.addButton}>Add New</button>
-        </Link>
       </div>
       <table className={styles.table}>
           <thead>
             <tr>
-              <td>Name</td>
+              <td>Username</td>
               <td>Email</td>
               <td>Created At</td>
-              <td>Role</td>
-              <td>Status</td>
               <td>Action</td>
             </tr>
           </thead>
           <tbody>
-            {users.map((user)=>(
+            {users?.map((user)=>(
             <tr key={user.id}>
             <td>
               <div className={styles.user}>
@@ -40,20 +36,17 @@ const UsersPage = async({searchParams}) => {
                   src={noavatar} 
                   width={40} 
                   height={40} 
-                  className={styles.userImage}/>
-                  {user.username}
+                  className={styles.userImage}
+                  priority={true} />
+                  {user.creatername}
               </div>
               </td>
-              <td>{user.email}</td>
+              <td>{user.createremail}</td>
               <td>{user.createdAt?.toString().slice(4,16)}</td>
-              <td>{user.isAdmin ? "Admin":"Client"}</td>
-              <td>{user.isActive ? "Active" :"Not Active"}</td>
+              
               <td>
                 <div className={styles.buttons}>
-                <Link href='/dashboard/users/test'>
-                  <button className={`${styles.button} ${styles.view}`}>View</button>
-                </Link>
-                <form action={deleteUser}>
+                <form action={deleteBlog}>
                   <input name='id' value={user.id} hidden/>
                   <button className={`${styles.button} ${styles.delete}`}>Delete</button>
                 </form>                </div>
@@ -63,7 +56,7 @@ const UsersPage = async({searchParams}) => {
           </tbody>
         
       </table>
-      <Pagination/>
+      <Pagination count={count}/>
     </div>
   )
 }

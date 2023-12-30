@@ -24,6 +24,7 @@ const Transaction = () => {
                 width={40} 
                 height={40}
                 className={styles.userImage}
+                priority={true} 
               />
               Niranjan</div>
             </td>
@@ -40,6 +41,7 @@ const Transaction = () => {
                 width={40} 
                 height={40}
                 className={styles.userImage}
+                priority={true} 
               />
               Niranjan</div>
             </td>
@@ -57,6 +59,7 @@ const Transaction = () => {
                 width={40} 
                 height={40}
                 className={styles.userImage}
+                priority={true} 
               />
               Niranjan</div>
             </td>
@@ -74,6 +77,7 @@ const Transaction = () => {
                 width={40} 
                 height={40}
                 className={styles.userImage}
+                priority={true} 
               />
               Niranjan</div>
             </td>

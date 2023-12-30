@@ -1,7 +1,10 @@
 .container{
     position: static;
     margin-top: 40px;
+    background-color: var(--bgSoft);
+    height: 100vh;
 }
+
 .user{
     display: flex;
     align-items: center;
@@ -15,7 +18,7 @@
 }
 .userDetials{
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  
 }
 .userName{
     font-weight: 500;
@@ -50,4 +53,18 @@
 }
 .logout:hover{
     background-color: #2e374a;
+}
+.secondary{
+    display: block;
+}
+.drawer{
+    display: none;
+}
+@media only screen and (max-width: 700px){
+   .secondary{
+    display: none;
+   }
+    .drawer{
+        display: block;
+    }
 }

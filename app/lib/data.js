@@ -1,47 +1,42 @@
-import { Product, User } from "./model"
+import { Product, Transaction, User,Blog } from "./model"
 import { connectToDb } from "./utils";
 
-export const fetchUser = async (q)=>{
+export const fetchUser = async (q,page)=>{
     const regex = new RegExp(q,"i");
-    try{
-        connectToDb();
-        const users = await User.find({username:{$regex:regex}});
-        return users
-    }
-    catch (err){
-        console.log(err)
-        throw new Error("Failed to fetch users!")
-    }
-}
-export const fetchProduct = async (q)=>{
-    const regex = new RegExp(q,"i");
-    try{
-        connectToDb();
-        const product = await Product.find({title:{$regex:regex}});
-        return product
-    }
-    catch (err){
-        console.log(err)
-        throw new Error("Failed to fetch users!")
-    }
-}
 
-export const fetchSingleUser = async (id)=>{
+    const ITEM_PER_PAGE = 2
     try{
         connectToDb();
-        const user = await User.findById(id);
-        return user
+        const count = await Blog.find({creatername:{$regex:regex}}).count();
+        const users = await Blog.find({creatername:{$regex:regex}}).limit(ITEM_PER_PAGE).skip(ITEM_PER_PAGE*(page-1));
+        return{count, users}
     }
     catch (err){
         console.log(err)
     }
 }
 
-export const fetchSingleProduct = async (id)=>{
+export const fetchBlog = async (q,page)=>{
+    const regex = new RegExp(q,"i");
+    const ITEM_PER_PAGE = 8;
+    
     try{
         connectToDb();
-        const product = await Product.findById(id);
-        return product
+        const count = await Blog.find({title:{$regex:regex}}).count();
+        const blogs = await Blog.find({title:{$regex:regex}}).limit(ITEM_PER_PAGE).skip(ITEM_PER_PAGE*(page-1));
+        
+        return {count,blogs};
+        
+    }
+    catch (err){
+        console.log(err)
+    }
+}
+export const fetchSingleBlog = async (id)=>{
+    try{
+        connectToDb();
+        const blog = await Blog.findById(id);
+        return blog
     }
     catch (err){
         console.log(err)

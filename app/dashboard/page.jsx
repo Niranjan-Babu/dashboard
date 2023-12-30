@@ -1,4 +1,5 @@
-import React from 'react'
+import dynamic from 'next/dynamic';
+const React = dynamic(()=>import('react')) 
 import Card from '../ui/dashboard/card/card'
 import styles from '../ui/dashboard/dashboard.module.css'
 import Transaction from '../ui/dashboard/transaction/transaction'

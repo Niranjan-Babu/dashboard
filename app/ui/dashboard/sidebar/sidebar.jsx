@@ -30,32 +30,13 @@ const menuItems =[
         icon:<MdAnalytics/>
       },
       {
-        title:"Products",
+        title:"Blogs",
         path:"/dashboard/products",
         icon:<MdShoppingBag/>
       },
       {
-        title:"Transaction",
-        path:"/dashboard/transaction",
-        icon:<MdAttachMoney/>
-      }
-    ]
-  },
-  {
-    title:"Analytics",
-    list:[
-      {
-        title:"Revenue",
-        path:"/dashboard/revenue",
-        icon:<MdWork/>
-      },
-      {
-        title:"Reports",
-        path:"/dashboard/reports"
-        ,icon:<MdAnalytics/>
-      },{
-        title:"Teams",
-        path:"/dashboard/teams",
+        title:"About",
+        path:"/dashboard/about",
         icon:<MdPeople/>
       }
     ]
@@ -80,7 +61,7 @@ const Sidebar = () => {
   return (
     <div className={styles.container}>
       <div className={styles.user}>
-          <Image  className={styles.userImage} src={admin} alt="" width="50" height="50"/>
+          <Image  className={styles.userImage} src={admin} alt="" width="50" height="50" priority={true} />
           <div className={styles.userDetials}>
             <span className={styles.userName}>Niranjan</span>
             <span className={styles.title}>Administrator</span>
@@ -96,9 +77,7 @@ const Sidebar = () => {
         </li>
        ))} 
       </ul>
-      <button className={styles.logout}>
-        <MdLogout/>
-        LogOut</button>
+     
     </div>
   )
 }
