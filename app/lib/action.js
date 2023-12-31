@@ -37,7 +37,7 @@ export const deleteBlog = async (formData) =>{
 
     try{
         connectToDb();
-        await Blog.findByIdAndDelete(id);
+        
     }catch(err){
         console.log(err)
     }

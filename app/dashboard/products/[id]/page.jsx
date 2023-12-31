@@ -15,8 +15,8 @@ const SingleProductPage = async({params}) => {
         <label >User Email</label>
         <input type="email" name='createremail' placeholder={blog.createremail}/>
         <label >Blog Content</label>
-        <textarea type="text" name='Address'row={20}  placeholder={blog.content} disabled></textarea>
-        <label >Is Admin ?</label>
+        <div dangerouslySetInnerHTML={{ __html: blog.content }} className={styles.div}/>
+        <label >Category</label>
         <select name='category' id='category'>
           <option value={blog.category}>{blog.category}</option>
           <option value="general">General</option>

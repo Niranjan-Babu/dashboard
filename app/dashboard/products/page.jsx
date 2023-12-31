@@ -1,3 +1,4 @@
+
 import Search from '@/app/ui/dashboard/search/search'
 import styles from '@/app/ui/dashboard/products/products.module.css'
 import Link from 'next/link'
@@ -45,9 +46,9 @@ const ProductsPage =async({searchParams}) => {
                 <Link href={`/dashboard/products/${product.id}`}>
                   <button className={`${styles.button} ${styles.view}`}>View</button>
                 </Link>
-                <form action={deleteBlog}>
+                <form >
                   <input name='id' value={product.id} hidden/>
-                  <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                  <button className={`${styles.button} ${styles.delete}`} disabled>Delete</button>
                 </form>
                 </div>
               </td>
